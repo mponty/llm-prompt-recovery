@@ -275,7 +275,7 @@ def prompt_polishing(prompt):
     return prompt
 
 # Load dataset, preprocess and deduplicate prompts
-sub_prompts = pd.read_parquet('data_train.parquet')['label']
+sub_prompts = pd.read_parquet('../data/data_train.parquet')['label']
 
 sub_prompts = sub_prompts[sub_prompts.str.len() < 250]
 sub_prompts = sub_prompts.str.strip(string.punctuation + '0123456789 ')
@@ -351,5 +351,5 @@ dedup_prompts = prompts[deduplication_mask]
 dedup_distance_mat = distance_mat[deduplication_mask][:, deduplication_mask]
 
 # Output the final prompts to a CSV file
-pd.DataFrame(dedup_prompts).to_csv('final_prompts.csv')
+pd.DataFrame(dedup_prompts).to_csv('../output/final_prompts.csv')
 

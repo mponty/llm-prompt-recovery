@@ -1,4 +1,4 @@
-# RUN this inside kaggle kernel!
+# RUN this inside kaggle kernel!!!
 # https://www.kaggle.com/code/dmitriyab/gemma-7b-tpu-generation-2/
 
 print("\n... IMPORTS ...\n")

@@ -62,8 +62,8 @@ def CVScore(df):
 
 
 # Load embedding data and prompts for embedding lookup
-matrix = np.load('matrix.npy')
-prompts = joblib.load('prompts.joblib')
+matrix = np.load('../data/matrix.npy')
+prompts = joblib.load('../data/prompts.joblib')
 dict_embedding = {prompts[i]: matrix[i][None] for i in range(len(prompts))}
 
 
@@ -77,8 +77,8 @@ def get_embedding(text):
 tqdm.pandas()
 
 # Load training and testing datasets
-data_train = pd.read_parquet('data_train.parquet')
-data_test = pd.read_parquet('data_test.parquet')
+data_train = pd.read_parquet('../data/data_train.parquet')
+data_test = pd.read_parquet('../data/data_test.parquet')
 tot = len(data_train)
 indexes = [i for i in range(tot) if i % 8 != fold]
 data_train = data_train.iloc[indexes]
@@ -198,9 +198,9 @@ for e in range(epochs):
 
 ema.apply_shadow()
 score = eval_model()
-output_model_file = f"./model_output2_{fold}/{score}.bin"
+output_model_file = f"../output/model_output2_{fold}/{score}.bin"
 model_to_save = model.module if hasattr(model, 'module') else model
 torch.save(model_to_save.state_dict(), output_model_file)
 ema.restore()
 
-pd.DataFrame(prompts).to_csv(f'./model_output2_{fold}/submit_prompt.csv', index=None)
+pd.DataFrame(prompts).to_csv(f'../output/model_output2_{fold}/submit_prompt.csv', index=None)
