@@ -6,6 +6,16 @@ Hello!
 Below you can find a outline of how to reproduce our solution for the **LLM Prompt Recovery** competition.
 If you run into any trouble with the setup/code or have any questions please contact us at `dmitry.abulkhanov@gmail.com`
 
+### REPO CONTENTS
+```
+
+data                    : input data folder
+output                  : folder for training output
+prompt_data_generation  : contains code for data generation (execute in kaggle kernel)
+prompt_set_preparation  : code for filtering final prompt set
+ranker_training         : code to train ranker models
+```
+
 ### HARDWARE: (The following specs were used to create the original solution)
 * Rankers training setup:
   * Ubuntu 22.04 LTS (1 Tb boot disk)
@@ -49,6 +59,6 @@ sh run.sh
 It should prepare submission prompt set and place them into `./output` folder
 
 ### FINAL SUBMISSION
+After training and preparation completion use `./output` content in the next kernel for submission reproduction:
 
 https://www.kaggle.com/code/dmitriyab/fifth-place-solution
-
